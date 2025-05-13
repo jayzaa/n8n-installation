@@ -22,7 +22,7 @@ else
 fi
 
 #Swap Size 
-$SWAPSIZE="2G"
+SWAPSIZE="2G"
 ### Change Timezone
 sudo cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime;
 ### Swap
