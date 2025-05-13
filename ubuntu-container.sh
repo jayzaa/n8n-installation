@@ -15,7 +15,7 @@ N8N_USER="test"
 N8N_PASSWORD="test"
 N8N_WEBHOOK="http://localhost"
 ### Change Timezone
-sudo cp /usr/share/Zoneinfo/Asia/Bangkok /etc/localtime -y;
+sudo cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime;
 sudo hwclock --systohc;
 ### Swap
 sudo fallocate -l 2G /swapfile
