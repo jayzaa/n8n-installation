@@ -37,6 +37,7 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ### Install Pre-Requisites
 sudo apt update -y;
 sudo apt upgrade -y;
+sudo apt reinstall --allow-change-held-packages -y cloud-init ;
 
 ### Install Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
