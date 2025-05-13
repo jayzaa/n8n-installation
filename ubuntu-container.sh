@@ -1,5 +1,4 @@
 #!/bin/bash
-##### Try at your own risk
 ### Install n8n with reverse proxy (Containerized Mode)
 ### This script will
 ### 0. Change Timezone to Thailand Time
@@ -8,7 +7,7 @@
 ### 3. Update Ubuntu to latest version
 ### 4. Install Docker
 ### 5. Install nginx and set as reverse proxy for n8n
-
+### 
 
 ### Your Domain Name, use localhost if you don't have and preferred to use ip address
 DOMAINNAME="localhost"
@@ -20,11 +19,14 @@ if [ "$DOMAIN_NAME" = "localhost" ]; then
 else
     export N8N_SECURE_COOKIE=true
 fi
+
+#Swap Size 
+$SWAPSIZE="2G"
 ### Change Timezone
 sudo cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime;
 sudo hwclock --systohc;
 ### Swap
-sudo fallocate -l 2G /swapfile
+sudo fallocate -l $SWAPSIZE /swapfile
 ls -lh /swapfile
 sudo chmod 600 /swapfile
 ls -lh /swapfile
@@ -35,11 +37,14 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ### Install Pre-Requisites
 sudo apt update -y;
 sudo apt upgrade -y;
+
 ### Install Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sleep 10
+echo "Wait for Signing Key on repository"
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-docker --version
+sudo docker --version
 #### Install Certificate Related
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common;
 sudo apt install -y nginx certbot python3-certbot-nginx;
