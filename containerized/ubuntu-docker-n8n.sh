@@ -35,19 +35,16 @@ sudo swapon /swapfile
 sudo swapon --show
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ### Install Pre-Requisites
-sudo apt update -y;
-sudo apt upgrade -y;
-sudo apt reinstall --allow-change-held-packages -y cloud-init ;
-
-### Install Docker
+echo "Setup Docker Repo"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sleep 10
-echo "Wait for Signing Key on repository"
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-sudo docker --version
+echo "Run OS Patches and Fetch Repos"
+sudo apt update -y;
+sudo apt upgrade -y;
+sudo apt reinstall --allow-change-held-packages -y cloud-init;
+
 #### Install Certificate Related
-sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common;
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common;
 sudo apt install -y nginx certbot python3-certbot-nginx;
 sudo systemctl enable nginx; 
 sudo rm -f /etc/nginx/sites-enabled/* /etc/nginx/sites-available/* /etc/nginx/conf.d/*
@@ -76,6 +73,12 @@ echo "This should return Error 502 due to No Backend Running";
 
 
 #Docker for n8n
+echo "Waiting for 20 seconds..."
+sleep 20
+echo "Done waiting."
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo docker --version
+
 sudo docker pull n8nio/n8n;
 sudo docker run -d --name n8n -p 5678:5678 n8nio/n8n;
 sleep 5;
