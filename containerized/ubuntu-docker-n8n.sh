@@ -8,19 +8,14 @@
 ### 3. Update Ubuntu to latest version
 ### 4. Install Docker
 ### 5. Install nginx and set as reverse proxy for n8n
-### 
+### 6. FYI, As your own risk, if container failed to run, run this script again, this should works.
 
 ### Your Domain Name, use localhost if you don't have and preferred to use ip address
 DOMAINNAME="localhost"
 N8N_USER="test"
 N8N_PASSWORD="test"
-N8N_WEBHOOK="http://localhost"
-if [ "$DOMAIN_NAME" = "localhost" ]; then
-    export N8N_SECURE_COOKIE=false
-else
-    export N8N_SECURE_COOKIE=true
-fi
-
+N8N_WEBHOOK="localhost"
+N8N_S_COOKIE=false
 #Swap Size 
 SWAPSIZE="2G"
 ### Change Timezone
@@ -42,7 +37,7 @@ echo "Run OS Patches and Fetch Repos"
 sudo apt update -y;
 sudo apt upgrade -y;
 sudo apt reinstall --allow-change-held-packages -y cloud-init;
-
+sudo apt autoremove -y;
 #### Install Certificate Related
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common;
 sudo apt install -y nginx certbot python3-certbot-nginx;
@@ -77,25 +72,26 @@ echo "Waiting for 20 seconds..."
 sleep 20
 echo "Done waiting."
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-sudo docker --version
+docker --version
 
-sudo docker pull n8nio/n8n;
-sudo docker run -d --name n8n -p 5678:5678 n8nio/n8n;
+docker pull n8nio/n8n;
+docker run -d --name n8n -p 5678:5678 n8nio/n8n;
 sleep 5;
 curl -I http://$DOMAINNAME:5678;
-sudo chown -R 1000:1000 ~/.n8n
-sudo chmod -R 755 ~/.n8n
-sudo docker start n8n
-sudo docker stop n8n && sudo docker rm n8n #Remove old Container Session
-sudo docker run -d --name n8n \
+chown -R 1000:1000 ~/.n8n
+chmod -R 755 ~/.n8n
+docker start n8n
+docker stop n8n 
+docker rm n8n
+docker run -d --name n8n \
   -p 5678:5678 \
   -e N8N_BASIC_AUTH_ACTIVE=true \
   -e N8N_BASIC_AUTH_USER=$N8N_USER \
   -e N8N_BASIC_AUTH_PASSWORD=$N8N_PASSWORD \
   -e N8N_HOST=$DOMAINNAME \
   -e N8N_PORT=5678 \
-  -e N8N_SECURE_COOKIE=$N8N_SECURE_COOKIE \
-  -e WEBHOOK_URL=$N8N_WEBHOOK \
+  -e N8N_SECURE_COOKIE=$N8N_S_COOKIE \
+  -e WEBHOOK_URL=http://$N8N_WEBHOOK \
   -e GENERIC_TIMEZONE=UTC \
   -v ~/.n8n:/home/node/.n8n \
   n8nio/n8n
@@ -108,3 +104,4 @@ curl -I http://$DOMAINNAME;
   #sudo certbot renew
   # Every 3 AM, Certbot will renew
   #(sudo crontab -l 2>/dev/null; echo '0 3 * * * certbot renew --quiet --post-hook "systemctl restart nginx"') | sudo crontab -
+
