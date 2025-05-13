@@ -58,20 +58,21 @@ server {
 EOF
 
 sudo nginx -t;
-sudo systemctl start nginx;
+sudo systemctl restart nginx;
 curl -I http://$DOMAINNAME;
 echo "This should return Error 502 due to No Backend Running";
 
 
 #Docker for n8n
-docker pull n8nio/n8n;
-docker run -d --name n8n -p 5678:5678 n8nio/n8n;
+sudo docker pull n8nio/n8n;
+sudo docker run -d --name n8n -p 5678:5678 n8nio/n8n;
+sleep 5;
 curl -I http://$DOMAINNAME:5678;
 sudo chown -R 1000:1000 ~/.n8n
 sudo chmod -R 755 ~/.n8n
-docker start n8n
-docker stop n8n && docker rm n8n #Remove old Container Session
-docker run -d --name n8n \
+sudo docker start n8n
+sudo docker stop n8n && sudo docker rm n8n #Remove old Container Session
+sudo docker run -d --name n8n \
   -p 5678:5678 \
   -e N8N_BASIC_AUTH_ACTIVE=true \
   -e N8N_BASIC_AUTH_USER=$N8N_USER \
@@ -82,7 +83,8 @@ docker run -d --name n8n \
   -e GENERIC_TIMEZONE=UTC \
   -v ~/.n8n:/home/node/.n8n \
   n8nio/n8n
-
+sleep 5;
+curl -I http://$DOMAINNAME:5678;
 
   ### Uncomment if need to run certbot, Currently use localhost
   #sudo certbot --nginx -d $DOMAINNAME;
