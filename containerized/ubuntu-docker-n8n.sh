@@ -25,7 +25,6 @@ fi
 $SWAPSIZE="2G"
 ### Change Timezone
 sudo cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime;
-sudo hwclock --systohc;
 ### Swap
 sudo fallocate -l $SWAPSIZE /swapfile
 ls -lh /swapfile
