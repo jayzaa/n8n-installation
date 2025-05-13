@@ -1,5 +1,6 @@
 #!/bin/bash
 ### Install n8n with reverse proxy (Containerized Mode)
+### Writer: Jayzaa 
 ### This script will
 ### 0. Change Timezone to Thailand Time
 ### 1. Create 2GB of Swap File
