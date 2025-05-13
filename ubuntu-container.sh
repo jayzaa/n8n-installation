@@ -1,4 +1,5 @@
 #!/bin/bash
+##### Try at your own risk
 ### Install n8n with reverse proxy (Containerized Mode)
 ### This script will
 ### 0. Change Timezone to Thailand Time
@@ -7,13 +8,18 @@
 ### 3. Update Ubuntu to latest version
 ### 4. Install Docker
 ### 5. Install nginx and set as reverse proxy for n8n
-### 
+
 
 ### Your Domain Name, use localhost if you don't have and preferred to use ip address
 DOMAINNAME="localhost"
 N8N_USER="test"
 N8N_PASSWORD="test"
 N8N_WEBHOOK="http://localhost"
+if [ "$DOMAIN_NAME" = "localhost" ]; then
+    export N8N_SECURE_COOKIE=false
+else
+    export N8N_SECURE_COOKIE=true
+fi
 ### Change Timezone
 sudo cp /usr/share/zoneinfo/Asia/Bangkok /etc/localtime;
 sudo hwclock --systohc;
@@ -79,12 +85,14 @@ sudo docker run -d --name n8n \
   -e N8N_BASIC_AUTH_PASSWORD=$N8N_PASSWORD \
   -e N8N_HOST=$DOMAINNAME \
   -e N8N_PORT=5678 \
+  -e N8N_SECURE_COOKIE=$N8N_SECURE_COOKIE \
   -e WEBHOOK_URL=$N8N_WEBHOOK \
   -e GENERIC_TIMEZONE=UTC \
   -v ~/.n8n:/home/node/.n8n \
   n8nio/n8n
 sleep 5;
 curl -I http://$DOMAINNAME:5678;
+curl -I http://$DOMAINNAME;
 
   ### Uncomment if need to run certbot, Currently use localhost
   #sudo certbot --nginx -d $DOMAINNAME;
