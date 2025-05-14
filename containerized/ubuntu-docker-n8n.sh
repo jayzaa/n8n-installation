@@ -88,6 +88,7 @@ chmod -R 755 ~/.n8n
 docker start n8n
 docker stop n8n 
 docker rm n8n
+sleep 10;
 docker run -d --name n8n \
   -p 5678:5678 \
   -e N8N_BASIC_AUTH_ACTIVE=true \
