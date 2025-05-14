@@ -43,8 +43,10 @@ sudo apt update -y;
 sudo apt upgrade -y;
 sudo apt reinstall --allow-change-held-packages -y cloud-init;
 sudo apt autoremove -y;
+#### Install Pre-Requisites Ubuntu App
+sudo apt install -y vim systemd-cron inetutils-ping
 #### Install Certificate Related
-sudo apt install -y systemd-cron inetutils-ping apt-transport-https ca-certificates curl software-properties-common;
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common;
 sudo apt install -y nginx certbot python3-certbot-nginx;
 sudo systemctl enable nginx; 
 sudo rm -f /etc/nginx/sites-enabled/* /etc/nginx/sites-available/* /etc/nginx/conf.d/*
