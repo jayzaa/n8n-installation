@@ -1,6 +1,8 @@
 ## This script tested on 
-## 1. AlibabaCloud (Aliyun) (Both Simple Application Server and normal Elastic Compute Service)
-## 2. Google Cloud (Compute Engine)
+## Ubuntu Linux 24.04 LTS (Noble Nombat)
+## 1. AlibabaCloud (Aliyun) Simple Application Server (2vCPU / 1GB RAM / 30GB SSD)
+## 2. AlibabaCloud (Aliyun) Elastic Compute Service (2vCPU / 4GB RAM / 20GB SSD)
+## 3. Google Cloud Platform  Compute Engine (2vCPU / 4GB RAM / 20GB Balanced Disk)
 
 ## If you want to try AlibabaCloud: [Click Here to try](https://www.alibabacloud.com/campaign/benefits?referral_code=A9ESHA)
 ## 9.9$ per year on AlibabaCloud Simple Application Server [Click Here to see Offer](https://www.alibabacloud.com/campaign/benefits?_p_lc=1&referral_code=A9ESHA#J_7789915720)
