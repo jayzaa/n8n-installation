@@ -36,7 +36,7 @@ sudo swapon --show
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ### Install Pre-Requisites
 echo "Setup Docker Repo"
-sudo apt install -y gpg;
+sudo apt install -y gpg dialog;
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 echo "Run OS Patches and Fetch Repos"
