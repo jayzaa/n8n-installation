@@ -47,4 +47,4 @@ The n8n Docker container runs as root. You **must take responsibility** for the 
 
 * Docker containers have high privileges by default
 * Security must be managed manually
-* It is
+* It is recommend to have basic administration , or use cloud firewall to denied bad traffic.
