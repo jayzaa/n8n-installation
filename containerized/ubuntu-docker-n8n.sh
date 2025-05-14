@@ -68,7 +68,8 @@ EOF
 
 sudo nginx -t;
 sudo systemctl restart nginx;
-curl -I http://$DOMAINNAME;
+echo "Test First Curl to nginx"
+curl -I --connect-timeout 10 --max-time 30 http://$DOMAINNAME;
 echo "This should return Error 502 due to No Backend Running";
 
 
@@ -102,8 +103,10 @@ docker run -d --name n8n \
   -v ~/.n8n:/home/node/.n8n \
   n8nio/n8n
 sleep 5;
-curl -I http://$DOMAINNAME:5678;
-curl -I http://$DOMAINNAME;
+echo "Test Call to n8n"
+curl -I --connect-timeout 10 --max-time 30 http://$DOMAINNAME:5678;
+echo "Test Call to n8n with reverse proxy"
+curl -I --connect-timeout 10 --max-time 30 http://$DOMAINNAME;
 
   ### Uncomment if need to run certbot, Currently use localhost
   #sudo certbot --nginx -d $DOMAINNAME;
