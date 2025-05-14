@@ -1,4 +1,7 @@
-## This script tested on AlibabaCloud (Aliyun) Server, Result may different from another (but mostly OS level shouldn't be changes)
+## This script tested on 
+## 1. AlibabaCloud (Aliyun) (Both Simple Application Server and normal Elastic Compute Service)
+## 2. Google Cloud (Compute Engine)
+
 ## If you want to try AlibabaCloud: [Click Here to try](https://www.alibabacloud.com/campaign/benefits?referral_code=A9ESHA)
 ## 9.9$ per year on AlibabaCloud Simple Application Server [Click Here to see Offer](https://www.alibabacloud.com/campaign/benefits?_p_lc=1&referral_code=A9ESHA#J_7789915720)
 ### Intel Xeon Platinum / 2 vCPU / 1GB RAM / 30GB SSD / 200mbps Network / Thailand (Bangkok) region support / 1 IPv4
