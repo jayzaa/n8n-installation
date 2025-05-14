@@ -10,6 +10,11 @@
 ### 5. Install nginx and set as reverse proxy for n8n
 ### 6. FYI, As your own risk, if container failed to run, run this script again, this should works.
 
+## This script tested on AlibabaCloud (Aliyun) Server, Result may different from another (but mostly OS level shouldn't be changes)
+## If you want to try AlibabaCloud: [Click Here to try](https://www.alibabacloud.com/campaign/benefits?referral_code=A9ESHA)
+## 9.9$ per year on AlibabaCloud Simple Application Server [Click Here to see Offer](https://www.alibabacloud.com/campaign/benefits?_p_lc=1&referral_code=A9ESHA#J_7789915720)
+### Intel Xeon Platinum / 2 vCPU / 1GB RAM / 30GB SSD / 200mbps Network / Thailand (Bangkok) region support / 1 IPv4
+
 ### Your Domain Name, use localhost if you don't have and preferred to use ip address
 DOMAINNAME="localhost"
 N8N_USER="test"
