@@ -85,9 +85,10 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 docker --version
 
 docker pull n8nio/n8n;
-docker run -d --name n8n -p 5678:5678 n8nio/n8n;
-sleep 5;
-curl -I --connect-timeout 10 --max-time 30 http://$DOMAINNAME:5678;
+
+#docker run -d --name n8n -p 5678:5678 n8nio/n8n;
+#sleep 5;
+#curl -I --connect-timeout 10 --max-time 30 http://$DOMAINNAME:5678;
 chown -R 1000:1000 ~/.n8n
 chmod -R 755 ~/.n8n
 docker start n8n
