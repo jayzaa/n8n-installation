@@ -110,4 +110,5 @@ curl -I http://$DOMAINNAME;
   #sudo certbot renew
   # Every 3 AM, Certbot will renew
   #(sudo crontab -l 2>/dev/null; echo '0 3 * * * certbot renew --quiet --post-hook "systemctl restart nginx"') | sudo crontab -
+  #sudo systemctl restart nginx
 
