@@ -98,7 +98,7 @@ docker run -d --name n8n \
   -e N8N_PORT=5678 \
   -e N8N_SECURE_COOKIE=$N8N_S_COOKIE \
   -e WEBHOOK_URL=http://$N8N_WEBHOOK \
-  -e GENERIC_TIMEZONE=UTC \
+  -e GENERIC_TIMEZONE=Asia/Bangkok \
   -v ~/.n8n:/home/node/.n8n \
   n8nio/n8n
 sleep 5;
