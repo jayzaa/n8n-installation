@@ -16,10 +16,10 @@
 ### Intel Xeon Platinum / 2 vCPU / 1GB RAM / 30GB SSD / 200mbps Network / Thailand (Bangkok) region support / 1 IPv4
 
 ### Your Domain Name, use localhost if you don't have and preferred to use ip address
-DOMAINNAME="n8n3.ecorpgroup.com"
+DOMAINNAME="localhost"
 N8N_USER="test"
 N8N_PASSWORD="test"
-N8N_WEBHOOK="n8n3.ecorpgroup.com"
+N8N_WEBHOOK="localhost"
 N8N_S_COOKIE=false
 #Swap Size 
 SWAPSIZE="2G"
@@ -109,9 +109,9 @@ echo "Test Call to n8n with reverse proxy"
 curl -I --connect-timeout 10 --max-time 30 http://$DOMAINNAME;
 
   ### Uncomment if need to run certbot, Currently use localhost
-  sudo certbot --nginx -d $DOMAINNAME;
-  sudo certbot renew
+  #sudo certbot --nginx -d $DOMAINNAME;
+  #sudo certbot renew
   # Every 3 AM, Certbot will renew
-  (sudo crontab -l 2>/dev/null; echo '0 3 * * * certbot renew --quiet --post-hook "systemctl restart nginx"') | sudo crontab -
-  sudo systemctl restart nginx
+  #(sudo crontab -l 2>/dev/null; echo '0 3 * * * certbot renew --quiet --post-hook "systemctl restart nginx"') | sudo crontab -
+  #sudo systemctl restart nginx
 
